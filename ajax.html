@@ -30,6 +30,56 @@
             </ul>
             <a href="#" class="profile-link" id="btn-profile-link">Ver no Github</a>
         </div>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <script>
+            $(document).ready(function() {
+                console.log("jQuery está funcionando!");
+
+
+            $('#btn-profile-link').click(function(event) {
+            event.preventDefault();
+
+        });
+        
+        $('#btn-profile-link').click(function() {
+            event.preventDefault();
+            
+            try {
+                fetch('https://api.github.com/users/VictorMoraesDev')
+                .then(function(resposta) {
+                    if(!resposta.ok){
+                        throw new Error;
+                    }
+                    return resposta.json();
+                })
+                
+                .then(function(json) {
+                    console.log(json);
+                    $('#name').text(json.name);
+                    $('#username').text(json.login);
+                    $('.profile-avatar').attr('src', json.avatar_url);
+                    $('#following').text(json.following);
+                    $('#followers').text(json.followers);
+                    $('#repos').text(json.public_repos);
+                    
+                    const link = `https://github.com/VictorMoraesDev`;
+                    window.location.href = link;
+                })
+                .catch(function(error) {
+                    console.error(error);
+                });
+                
+            } catch (error) {
+                console.error(error);
+            }
+        });
+    });
+
+        </script>
+
+
     </header>
     <script src="main.js"></script>
 </body>

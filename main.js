@@ -16,5 +16,5 @@ fetch('https://api.github.com/users/VictorMoraesDev')
         $('#following').text(json.following);
         $('#followers').text(json.followers);
         $('#repos').text(json.repos);
-        });
-    });
+        })
+    })
