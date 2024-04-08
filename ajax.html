@@ -36,16 +36,17 @@
         <script>
             $(document).ready(function() {
                 console.log("jQuery está funcionando!");
-
+                fetchUserInfo();
 
             $('#btn-profile-link').click(function(event) {
             event.preventDefault();
+                
+                const link = `https://github.com/VictorMoraesDev`;
+                window.location.href = link;
+            });
 
-        });
-        
-        $('#btn-profile-link').click(function() {
-            event.preventDefault();
-            
+
+            function fetchUserInfo() {
             try {
                 fetch('https://api.github.com/users/VictorMoraesDev')
                 .then(function(resposta) {
@@ -63,9 +64,6 @@
                     $('#following').text(json.following);
                     $('#followers').text(json.followers);
                     $('#repos').text(json.public_repos);
-                    
-                    const link = `https://github.com/VictorMoraesDev`;
-                    window.location.href = link;
                 })
                 .catch(function(error) {
                     console.error(error);
@@ -74,8 +72,9 @@
             } catch (error) {
                 console.error(error);
             }
+        }
         });
-    });
+    
 
         </script>
 
